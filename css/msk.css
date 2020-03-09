@@ -1,0 +1,36 @@
+.flow-btn button {
+	width: 100px;
+}
+
+.flow-btn-lg button {
+	width: 110px;
+}
+
+/* 年度資料填寫 */ 
+.box.box-solid>.box-body {
+	color: #444;
+	background: #d2d6de;
+	background-color: #d2d6de;
+}
+
+.calculate .box.box-solid.box-default>.box-header {
+	color: #000;
+	background: #fff;
+	background-color: #fff;
+}
+
+.calculate .box-header {
+	text-align: center;
+}
+
+.calculate .box-header .box-title {
+	font-weight: 600;
+	font-size: 20px;
+}
+.selected {
+	background-color: #acbad4;
+}
+
+.cus-active {
+	color: rgb(0,0,255) !important;
+}
