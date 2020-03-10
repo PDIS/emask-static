@@ -67,25 +67,16 @@
         });
         $("#applyModal_msk001_townCd").change(function(event) {
         	if (!$("#applyModal_msk001_townCd").val())return;
-        	var storeKeyTemp = {
-        			marketCd : $("#applyModal_msk001_marketCd").val(),
-        			hsnCd : $("#applyModal_msk001_hsnCd").val(),
-        			townCd : $("#applyModal_msk001_townCd").val()
-        	}
-        	msk.send("./queryStoreService.do", JSON.stringify(storeKeyTemp), function (data) {
-					if (data.code < 0) {
-					    msk.dialog.bootBox('' + data.message);
-					} else {
-						$("#applyModal_msk001_storeCd").empty();
+        	var storeKeyTemp = 
+                        $("#applyModal_msk001_marketCd").val() +
+                        $("#applyModal_msk001_hsnCd").val() +
+                        $("#applyModal_msk001_townCd").val();
+                var stores = msk.common.MSK_STORE_MAP[storeKeyTemp];
 				        var selectTemp = "<option value=''>請選擇</option>";
-				        $.each(data.parameters.storeList, function(k,v) {
-				        	var listTemp = data.parameters.storeList[k];
-				        	selectTemp += "<option value='" + listTemp.STORE_CD + "'>" + listTemp.STORE_NM + "</option>"
-				        });
-				        $("#applyModal_msk001_storeCd").html(selectTemp);
-					}
-				}
-			);
+                        Object.keys(stores).sort().forEach(function(key) {
+                	    selectTemp += "<option value='" + key + "'>" + stores[key] + "</option>"
+                        });
+                                $("#applyModal_msk001_storeCd").html(selectTemp);
         });
     }
     

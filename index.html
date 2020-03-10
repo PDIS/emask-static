@@ -36,13 +36,17 @@
     //儲存資料
     msk.common.add({
     	HSN_CD : {"A":"臺北市", "B":"臺中市", "C":"基隆市", "D":"臺南市", "E":"高雄市", "F":"新北市", "G":"宜蘭縣", "H":"桃園市", "I":"嘉義市", "J":"新竹縣", "K":"苗栗縣", "M":"南投縣", "N":"彰化縣", "O":"新竹市", "P":"雲林縣", "Q":"嘉義縣", "T":"屏東縣", "U":"花蓮縣", "V":"臺東縣", "W":"金門縣", "X":"澎湖縣", "Z":"連江縣"},
-    	STORE_HEAD : [{"TYPE_CD":"SE","TYPE_NM":"統一超商","FLAG":"Y"},{"TYPE_CD":"FM","TYPE_NM":"全家便利商店","FLAG":"Y"},{"TYPE_CD":"OK","TYPE_NM":"OK超商","FLAG":"Y"},{"TYPE_CD":"HL","TYPE_NM":"萊爾富","FLAG":"Y"}],
+    	STORE_HEAD : [
+               // {"TYPE_CD":"SE","TYPE_NM":"統一超商","FLAG":"Y"}, // Disabled until TOWN_CD is available
+                {"TYPE_CD":"FM","TYPE_NM":"全家便利商店","FLAG":"Y"},{"TYPE_CD":"OK","TYPE_NM":"OK超商","FLAG":"Y"},{"TYPE_CD":"HL","TYPE_NM":"萊爾富","FLAG":"Y"}],
     	NOW_TAX_PERIOD : {"PAY_B_DATE":"2020-03-14 00:00:00","REL_DATE":"2020-03-08 00:00:00","NO2":"07","NO1":"01","TAX_PERIOD":"01","CHECKIN_B_DATE":"2020-03-08 00:00:00","NO4":"32","NO3":"11","CHECKIN_E_DATE":"2020-03-10 00:00:00","NO6":"33","CHECKIN_TOTAL":"0","NO5":"41","NO7":"09","PAY_E_DATE":"2020-03-14 00:00:00","MASK_TOTAL":"7000000","MASKS":"3","WIN_TOTAL":"0"},
-    	MSK_TOWN_MAP : {"SEB":[{"TOWN_NM":"北區","TOWN_CD":"11"}],"SEF":[{"TOWN_NM":"板橋區","TOWN_CD":"01"}],"OKB":[{"TOWN_NM":"北區","TOWN_CD":"11"}],"HLB":[{"TOWN_NM":"北區","TOWN_CD":"11"}]}
+    	MSK_TOWN_MAP : {"SEB":[{"TOWN_NM":"北區","TOWN_CD":"11"}],"SEF":[{"TOWN_NM":"板橋區","TOWN_CD":"01"}],"OKB":[{"TOWN_NM":"北區","TOWN_CD":"11"}],"HLB":[{"TOWN_NM":"北區","TOWN_CD":"11"}]},
+        MSK_STORE_MAP : { 'FMA中山區': { 5989: '中賓店（台北市中山區中山里中山北路二段５９之３號１樓）' } }
     });
 </script>
 
 <script type="text/javascript" src="./MSK_TOWN_MAP.js"></script>
+<script type="text/javascript" src="./MSK_STORE_MAP.js"></script>
 
 
 
