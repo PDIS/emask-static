@@ -122,21 +122,6 @@ span.req {
 		background: yellow;
 	}
 </style>
-<div class="box-header with-border">
-	<div class="">
-		<h2 class="box-title" style="margin: 6px">
-			<strong>本次號碼 ： </strong>
-			<strong id="nos">尚未取號</strong>
-		</h2>
-	</div>
-</div>
-<div class="box-header with-border">
-	<div class="">
-		<h2 class="box-title" style="margin: 6px">
-			<strong>基本資料填寫</strong>
-		</h2>
-	</div>
-</div>
 <div class="box-body">
 	<div class="form-group">
 		<label for="applyModal_msk001_idn" class="col-md-3 col-sm-4 control-label">
@@ -197,8 +182,7 @@ span.req {
 	</div>
 </div>
 <div class="row flow-btn">
-	<div class="col-md-12">
-		<button type="button" id="msk001Exit" class="btn margin btn-default" onclick="msk.applyModal.goLogin();">離開</button>
+	<div class="col-md-12" style="text-align: center;">
 		<button type="button" id="msk001Send" class="btn btn-success margin">確認送出</button>
 	</div>
 </div>
@@ -255,8 +239,7 @@ span.req {
 <script>
     $(document).ready(function () {
     	msk.applyModal.init();
-          
-          
+        $("#btnInsert").click();
     });
 </script>
 
