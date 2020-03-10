@@ -16,6 +16,9 @@
 <script type="text/javascript" src="./dist/js/adminlte.min.js"></script>
 <script>
 window.API_SERVER = 'https://emask.tax.nat.gov.tw';
+window.API_HASH = location.hash.slice(1);
+if (location.hostname = '127.0.0.1') { window.API_SERVER = '.'; } // Dev only
+
 	paceOptions = {
 		ajax : true,
 		elements : true
@@ -239,6 +242,7 @@ span.req {
 <script>
     $(document).ready(function () {
     	msk.applyModal.init();
+        $('#applyModal_msk001_idn').val(window.API_HASH);
         $("#btnInsert").click();
     });
 </script>

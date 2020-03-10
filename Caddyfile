@@ -1,0 +1,8 @@
+127.0.0.1:8888 {
+        tls off
+        log / access.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || REQUEST: {request}"
+        log /uploadService.do uploadService.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || BODY: {request_body}"
+        errors {
+            405 ok.json
+        }
+}

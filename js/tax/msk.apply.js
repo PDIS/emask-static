@@ -248,7 +248,7 @@
         );
     }
     function send() {
-        msk.data.dataU = { 'hash': window.hash };
+        msk.data.dataU = { 'hash': window.API_HASH };
     	msk.data.dataU.idn = $("#applyModal_msk001_idn").val();
     	msk.data.dataU.nm = $("#applyModal_msk001_nm").val();
     	msk.data.dataU.marketCd = $("#applyModal_msk001_storeCd").val().substring(0, 2);
@@ -261,7 +261,6 @@
                     msk.dialog.bootBox('' + data.message);
                 } else {
 					msk.applyModal.isSelect = false;
-                	$("#nos").html(data.parameters.dataU.no1 + ", " + data.parameters.dataU.no2 + ", " + data.parameters.dataU.no3 + ", " + data.parameters.dataU.no4 + ", " + data.parameters.dataU.no5 + ", " + data.parameters.dataU.no6 + ", " + data.parameters.dataU.no7);
                     $("#applyModal_msk001_idn").prop("readonly","readonly");
                     $("#msk001Send").hide();
                     $("#btnInsert").prop("disabled", "disabled");

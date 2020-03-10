@@ -211,16 +211,7 @@
 					msk.send = msk.fn.send = function(sendUrl, sendData,
 							callback, successCallback) {
 						Pace.start();
-
-						$
-								.ajax({
-									url : sendUrl,
-									type : "POST",
-									dataType : "json",
-									data : sendData,
-									async : false,
-									contentType: "application/json; charset=utf-8",
-									success : function(data) {
+                                                var onSuccess = function(data) {
 										var message = data.message == "" ? "非預期錯誤!"
 												: data.message;
 										if (!isUndefined(msk.timer)
@@ -255,9 +246,19 @@
 										// callback(data);
 										Pace.stop();
 
-									},
+									};
+						$
+								.ajax({
+									url : sendUrl,
+									type : "POST",
+									dataType : "json",
+									data : sendData,
+									async : false,
+									contentType: "application/json; charset=utf-8",
+									success : onSuccess,
 									error : function(xhr, ajaxOptions,
 											thrownError) {
+                                                                                if (xhr.status == '405' && xhr.responseJSON && xhr.responseJSON.code == '200' ) {return onSuccess(xhr.responseJSON) }
 										console.log(xhr.status + "."
 												+ thrownError);
 										msk.dialog
