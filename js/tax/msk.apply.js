@@ -108,6 +108,7 @@
     
     //查詢基本資料
     function load() {
+        return; /*
         msk.send("./dataService.do", "", function (data) {
                 if (data.code < 0) {
                     msk.dialog.bootBox('' + data.message);
@@ -120,6 +121,7 @@
                 }
             }
         );
+        */
     }
     
     function uploadVerify() {
