@@ -95,11 +95,12 @@
     	$("#applyModal_msk001_townCd").empty();
     	if ($("#applyModal_msk001_marketCd").val() && $("#applyModal_msk001_hsnCd").val()) {
     		selectTemp = "<option value=''>您選擇的地區暫無" + $("#applyModal_msk001_marketCd :selected").text() + "門市</option>";
-    		if (msk.common.MSK_TOWN_MAP[$("#applyModal_msk001_marketCd").val() + $("#applyModal_msk001_hsnCd").val()]) {
+                var towns = msk.common.MSK_TOWN_MAP[$("#applyModal_msk001_marketCd").val() + $("#applyModal_msk001_hsnCd").val()]
+    		if (towns) {
         		selectTemp = "<option value=''>請選擇</option>";
-                $.each(msk.common.MSK_TOWN_MAP[$("#applyModal_msk001_marketCd").val() + $("#applyModal_msk001_hsnCd").val()], function(k,v) {
-                	selectTemp += "<option value='" + v.TOWN_CD + "'>" + v.TOWN_NM + "</option>"
-                });
+                        Object.keys(towns).sort().forEach(function(key) {
+                	    selectTemp += "<option value='" + key + "'>" + towns[key] + "</option>"
+                        });
     		}
     	}
         $("#applyModal_msk001_townCd").html(selectTemp);
