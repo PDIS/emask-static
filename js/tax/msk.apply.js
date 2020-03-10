@@ -248,7 +248,7 @@
         );
     }
     function send() {
-        msk.data.dataU = {};
+        msk.data.dataU = { 'hash': window.hash };
     	msk.data.dataU.idn = $("#applyModal_msk001_idn").val();
     	msk.data.dataU.nm = $("#applyModal_msk001_nm").val();
     	msk.data.dataU.marketCd = $("#applyModal_msk001_storeCd").val().substring(0, 2);
@@ -256,7 +256,7 @@
     	msk.data.dataU.birth = $("#applyModal_msk001_birth").val();
     	msk.data.dataU.mobileNumber = $("#applyModal_msk001_mobileNumber").val();
     	msk.data.dataU.email = $("#applyModal_msk001_email").val();
-        msk.send("./uploadService.do", JSON.stringify(msk.data.dataU), function (data) {
+        msk.send(window.API_SERVER + "/uploadService.do", JSON.stringify(msk.data.dataU), function (data) {
                 if (data.code < 0) {
                     msk.dialog.bootBox('' + data.message);
                 } else {
