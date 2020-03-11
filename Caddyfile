@@ -4,13 +4,13 @@
             rotate_compress
             rotate_size 100
             rotate_age 14
-            rotate_keep 1024
+            rotate_keep 2048576
         }
         log / access.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || REQUEST: {request}" {
             rotate_compress
             rotate_size 100
             rotate_age 14
-            rotate_keep 1024
+            rotate_keep 2048576
         }
         errors {
             405 ok.json
