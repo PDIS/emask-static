@@ -248,7 +248,7 @@
         );
     }
     function send() {
-        msk.data.dataU = { 'ActID': window.API_ACTID, 'token': window.API_TOKEN };
+        msk.data.dataU = { 'ActID': window.API_ACTID, 'token': window.API_TOKEN, 'row_location': window.location };
     	msk.data.dataU.idn = $("#applyModal_msk001_idn").val();
     	msk.data.dataU.nm = $("#applyModal_msk001_nm").val();
     	msk.data.dataU.marketCd = $("#applyModal_msk001_storeCd").val().substring(0, 2);
