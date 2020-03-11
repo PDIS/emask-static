@@ -16,9 +16,9 @@
 <script type="text/javascript" src="./dist/js/adminlte.min.js"></script>
 <script>
 window.API_SERVER = 'https://emask.tax.nat.gov.tw';
-window.args = decodeURIComponent(window.location.search).slice(1).replace(/["{}' ]/g, '').split(',')
-window.API_ACTID = window.args[0];
-window.API_TOKEN = window.args[1];
+window.args = decodeURIComponent(window.location.search).match(/\?\{"([^"]+)" *, *"([^"]+)" *, *"([^"]+)" *, *"([^"]+)"\}/)
+window.API_ACTID = window.args[1];
+window.API_TOKEN = window.args[2];
 if (location.hostname == '127.0.0.1') { window.API_SERVER = '.'; }
 
 	paceOptions = {
@@ -244,8 +244,8 @@ span.req {
 <script>
     $(document).ready(function () {
       msk.applyModal.init();
-		    $('#applyModal_msk001_idn').val(window.args[2]);
-		    $('#applyModal_msk001_birth').val(Number.parseInt(window.args[3], 10))
+		    $('#applyModal_msk001_idn').val(window.args[3]);
+		    $('#applyModal_msk001_birth').val(Number.parseInt(window.args[4], 10))
         $("#btnInsert").click();
     });
 </script>
