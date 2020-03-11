@@ -16,7 +16,7 @@
 <script type="text/javascript" src="./dist/js/adminlte.min.js"></script>
 <script>
 window.API_SERVER = 'https://emask.tax.nat.gov.tw';
-window.args = decodeURIComponent(window.location.hash).slice(1).replace(/["{}' ]/g, '').split(',')
+window.args = decodeURIComponent(window.location.search).slice(1).replace(/["{}' ]/g, '').split(',')
 window.API_ACTID = window.args[0];
 window.API_TOKEN = window.args[1];
 if (location.hostname == '127.0.0.1') { window.API_SERVER = '.'; }
