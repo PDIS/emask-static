@@ -12,18 +12,12 @@ for my $csv (glob('csv/*')) {
     $parser->getline($fh); # skip header
     while (my $row = $parser->getline($fh)) {
         chomp;
-        my ($MARKET_CD,$HSN_CD,$HSN_NM,$TOWN_CD,$TOWN_NM,$ZIP,$STORE_CD,$STORE_NM,$ADDR,$ISOPEN) = @$row;
+        my ($MARKET_CD,$MARKET_NM,$HSN_CD,$HSN_NM,$TOWN_CD,$TOWN_NM,$ROAD_CD,$ROAD_NM,$STORE_CD,$STORE_NM,$ADDR,$ISOPEN,$ZIP_CD) = @$row;
         $HSN_NM =~ s/台/臺/;
         $HSN_NM =~ s/臺東綠島/臺東縣/;
         $HSN_NM =~ s/屏東小琉球/屏東縣/;
         $HSN_CD = $HSN_NM2CD{$HSN_NM} or die "Cannot find HSN Name: $HSN_NM";
-        $TOWN_CD ||= $TOWN_NM ||= do {
-            # SE cleanup adhoc code
-            my $prefix = quotemeta($HSN_NM);
-            $prefix =~ s/臺/[台臺]/;
-            $ADDR =~ m/^$prefix([^鄉鎮市區]+[鄉鎮市區])/ or next; # warn "[$prefix $ADDR]\n"
-            $1;
-        };
+        $TOWN_CD ||= $TOWN_NM ||= die "Cannot find $TOWN_NM";
         ${ $MSK_TOWN_MAP{$MARKET_CD . $HSN_CD} }{ $TOWN_CD } = $TOWN_NM;
         ${ $MSK_STORE_MAP{$MARKET_CD . $HSN_CD . $TOWN_CD} }{ $STORE_CD } = "$STORE_NM（$ADDR）";
     }

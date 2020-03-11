@@ -73,7 +73,9 @@
                         $("#applyModal_msk001_townCd").val();
                 var stores = msk.common.MSK_STORE_MAP[storeKeyTemp];
 				        var selectTemp = "<option value=''>請選擇</option>";
-                        Object.keys(stores).sort().forEach(function(key) {
+                        Object.keys(stores).sort(
+                            function(a,b){return stores[a].localeCompare(stores[b])}
+                        ).forEach(function(key) {
                 	    selectTemp += "<option value='" + key + "'>" + stores[key] + "</option>"
                         });
                                 $("#applyModal_msk001_storeCd").html(selectTemp);
@@ -89,7 +91,9 @@
                 var towns = msk.common.MSK_TOWN_MAP[$("#applyModal_msk001_marketCd").val() + $("#applyModal_msk001_hsnCd").val()]
     		if (towns) {
         		selectTemp = "<option value=''>請選擇</option>";
-                        Object.keys(towns).sort().forEach(function(key) {
+                        Object.keys(towns).sort(
+                            function(a,b){return towns[a].localeCompare(towns[b])}
+                        ).forEach(function(key) {
                 	    selectTemp += "<option value='" + key + "'>" + towns[key] + "</option>"
                         });
     		}
