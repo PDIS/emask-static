@@ -264,12 +264,16 @@
                 if (data.code < 0) {
                     msk.dialog.bootBox('' + data.message);
                 } else {
+                    $('body').html("<h2 style='padding-bottom: 6px'>感謝預購！</h2><ul><li style='padding-bottom: 6px; font-size: 16px'>成功預購者將於3/19收到繳費通知簡訊，於繳費期限內以ATM轉帳付款。ATM轉帳通路包含行動銀行、網路銀行、網路ATM及實體ATM。</li><li style='padding-bottom: 6px; font-size: 16px'>交易成功後，簡訊發送取貨序號。</li><li style='padding-bottom: 6px; font-size: 16px'>民眾接獲取貨通知簡訊後，持序號及訂購人證件(身分證、健保卡或駕照)，至指定取貨超商的Kiosk服務機台(如：ibon、FamiPort、Life-ET、OK•go)輸入取貨序號及身分證字號後，列印取貨單(小白單)。</li><li style='padding-bottom: 6px; font-size: 16px'>持小白單至超商櫃台領取口罩</li>");
+                    msk.dialog.bootBox('' + data.message);
+                        /*
 					msk.applyModal.isSelect = false;
                     $("#applyModal_msk001_idn").prop("readonly","readonly");
                     $("#msk001Send").hide();
                     $("#btnInsert").prop("disabled", "disabled");
                     $("#infoInsert").html("登記期間不提供修改資料");
                     msk.dialog.bootBox('' + data.message);
+                    */
                 }
             }
         );
