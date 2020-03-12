@@ -264,7 +264,7 @@
                 if (data.code < 0) {
                     msk.dialog.bootBox('' + data.message);
                 } else {
-                    $('body').html("<h2 style='padding-bottom: 6px'>感謝預購！</h2><ul><li style='padding-bottom: 6px; font-size: 16px'>成功預購者將於3/19收到繳費通知簡訊，於繳費期限內以ATM轉帳付款。ATM轉帳通路包含行動銀行、網路銀行、網路ATM及實體ATM。</li><li style='padding-bottom: 6px; font-size: 16px'>交易成功後，簡訊發送取貨序號。</li><li style='padding-bottom: 6px; font-size: 16px'>民眾接獲取貨通知簡訊後，持序號及訂購人證件(身分證、健保卡或駕照)，至指定取貨超商的Kiosk服務機台(如：ibon、FamiPort、Life-ET、OK•go)輸入取貨序號及身分證字號後，列印取貨單(小白單)。</li><li style='padding-bottom: 6px; font-size: 16px'>持小白單至超商櫃台領取口罩。</li>");
+                    $('body').html("<h2 style='padding-bottom: 6px'>感謝預購！</h2><ul><li style='padding-bottom: 6px; font-size: 16px'>預購截止日後，我們將依預購量及供貨量進行抽籤，並於2020-03-19以簡訊通知抽籤結果。</li><li style='padding-bottom: 6px; font-size: 16px'>收到繳費通知簡訊後，請於繳費期限內以ATM轉帳付款。ATM轉帳通路包含行動銀行、網路銀行、網路ATM及實體ATM。</li><li style='padding-bottom: 6px; font-size: 16px'>交易成功後，簡訊發送取貨序號。</li><li style='padding-bottom: 6px; font-size: 16px'>接獲取貨通知簡訊後，請持序號及訂購人證件(身分證、健保卡或駕照)，至指定取貨超商的Kiosk服務機台(如：ibon、FamiPort、Life-ET、OK•go)輸入取貨序號及身分證字號後，列印取貨單(小白單)。</li><li style='padding-bottom: 6px; font-size: 16px'>持小白單至超商櫃台領取口罩。</li>");
                     msk.dialog.bootBox('' + data.message);
                         /*
 					msk.applyModal.isSelect = false;
