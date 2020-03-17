@@ -132,6 +132,16 @@
 			msk.dialog.bootBox("請選擇送貨門市");
 			check = false;
 		}
+                var mobileNumber = $("#applyModal_msk001_mobileNumber").val();
+		if (mobileNumber.length != 10) {
+                        msk.dialog.bootBox("手機號碼不足10碼！");
+			check = false;
+                }
+                if ("09"!=mobileNumber.substring(0, 2) || /[^0-9]/g.test(mobileNumber)) {
+
+                        msk.dialog.bootBox("手機號碼有誤！");
+			check = false;
+                }
 		return check;
     }
     
