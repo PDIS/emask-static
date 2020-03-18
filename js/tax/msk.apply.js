@@ -131,7 +131,20 @@
 		if (!$("#applyModal_msk001_storeCd").val()) {
 			msk.dialog.bootBox("請選擇送貨門市");
 			check = false;
+                        return check;
 		}
+                var mobileNumber = $("#applyModal_msk001_mobileNumber").val();
+		if (mobileNumber.length != 10) {
+                        msk.dialog.bootBox("手機號碼不足10碼！");
+			check = false;
+                        return check;
+                }
+                if ("09"!=mobileNumber.substring(0, 2) || /[^0-9]/g.test(mobileNumber)) {
+
+                        msk.dialog.bootBox("手機號碼有誤！");
+			check = false;
+                        return check;
+                }
 		return check;
     }
     
@@ -255,8 +268,8 @@
         msk.data.dataU = { 'ActID': window.API_ACTID, 'token': window.API_TOKEN, 'row_location': window.location };
     	msk.data.dataU.idn = $("#applyModal_msk001_idn").val();
     	msk.data.dataU.nm = $("#applyModal_msk001_nm").val();
-    	msk.data.dataU.marketCd = $("#applyModal_msk001_storeCd").val().substring(0, 2);
-    	msk.data.dataU.storeCd = $("#applyModal_msk001_storeCd").val().substring(2);
+    	msk.data.dataU.marketCd = $("#applyModal_msk001_marketCd").val();
+    	msk.data.dataU.storeCd = $("#applyModal_msk001_storeCd").val();
     	msk.data.dataU.birth = $("#applyModal_msk001_birth").val();
     	msk.data.dataU.mobileNumber = $("#applyModal_msk001_mobileNumber").val();
         msk.data.dataU.email = $("#applyModal_msk001_email").val();
