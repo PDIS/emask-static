@@ -11,256 +11,28 @@
 <link href="./js/pace/pace-custom.css" media="all" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="./css/css-loader.css">
 <link href="./css/msk.css" media="all" rel="stylesheet" type="text/css">
-
-<script type="text/javascript" src="./dist/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="./dist/js/adminlte.min.js"></script>
-<script>
-window.API_SERVER = 'https://emask.tax.nat.gov.tw';
-window.args = decodeURIComponent(window.location.search).match(/\?\{"([^"]+)" *, *"([^"]+)" *, *"([^"]+)"(?: *, *"([^"]*)")?\}/)
-window.API_ACTID = window.args[1];
-window.API_TOKEN = window.args[2];
-if (location.hostname == '127.0.0.1') { window.API_SERVER = '.'; }
-
-	paceOptions = {
-		ajax : true,
-		elements : true
-	};
-</script>
-<script type="text/javascript" src="./js/pace/pace.min.js"></script>
-<script type="text/javascript" src="./js/jquery/bootbox-custom.min.js"></script>
-<script type="text/javascript" src="./dist/bootstrap/dist/js/bootstrap.min.js"></script>
-
-
-<script type="text/javascript" src="./js/tax/msk.js"></script>
-<script type="text/javascript" src="./js/tax/msk.util.js"></script>
-<script type="text/javascript" src="./js/tax/msk.verify.idn.js"></script>
-<script type="text/javascript" src="./js/tax/msk.dialog.js"></script>
-<script type="text/javascript" src="./js/tax/msk.os.js"></script>
-<script type="text/javascript" src="./js/tax/msk.apply.js"></script>
-
-
-<script type="text/javascript" language="javascript" class="init">
-    //儲存資料
-    msk.common.add({
-    	HSN_CD : {"A":"臺北市", "B":"臺中市", "C":"基隆市", "D":"臺南市", "E":"高雄市", "F":"新北市", "G":"宜蘭縣", "H":"桃園市", "I":"嘉義市", "J":"新竹縣", "K":"苗栗縣", "M":"南投縣", "N":"彰化縣", "O":"新竹市", "P":"雲林縣", "Q":"嘉義縣", "T":"屏東縣", "U":"花蓮縣", "V":"臺東縣", "W":"金門縣", "X":"澎湖縣", "Z":"連江縣"},
-    	STORE_HEAD : [ {"TYPE_CD":"SE","TYPE_NM":"統一超商","FLAG":"Y"},{"TYPE_CD":"FM","TYPE_NM":"全家便利商店","FLAG":"Y"},{"TYPE_CD":"HL","TYPE_NM":"萊爾富","FLAG":"Y"},{"TYPE_CD":"OK","TYPE_NM":"OK超商","FLAG":"Y"}],
-    	NOW_TAX_PERIOD : {"PAY_B_DATE":"2020-03-14 00:00:00","REL_DATE":"2020-03-08 00:00:00","NO2":"07","NO1":"01","TAX_PERIOD":"01","CHECKIN_B_DATE":"2020-03-08 00:00:00","NO4":"32","NO3":"11","CHECKIN_E_DATE":"2020-03-10 00:00:00","NO6":"33","CHECKIN_TOTAL":"0","NO5":"41","NO7":"09","PAY_E_DATE":"2020-03-14 00:00:00","MASK_TOTAL":"7000000","MASKS":"3","WIN_TOTAL":"0"},
-    	MSK_TOWN_MAP : {"SEB":[{"TOWN_NM":"北區","TOWN_CD":"11"}],"SEF":[{"TOWN_NM":"板橋區","TOWN_CD":"01"}],"OKB":[{"TOWN_NM":"北區","TOWN_CD":"11"}],"HLB":[{"TOWN_NM":"北區","TOWN_CD":"11"}]},
-        MSK_STORE_MAP : { 'FMA中山區': { 5989: '中賓店（台北市中山區中山里中山北路二段５９之３號１樓）' } }
-    });
-</script>
-
-<script type="text/javascript" src="./MSK_TOWN_MAP.js"></script>
-<script type="text/javascript" src="./MSK_STORE_MAP.js"></script>
-
-
-
 <style type="text/css">
 span.req {
 	color: red
 }
 </style>
-
 </head>
 
-<body class="pace-done pace-done" style="height: auto; min-height: 100%;"><div class="pace  pace-inactive pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
-  <div class="pace-progress-inner"></div>
-</div>
-<div class="pace-activity"></div></div>
-	<div id="applyModal">
-		<section class="content-header">
-			<h1>eMask 口罩預購系統 <label class="text-primary"></label>
-			</h1>
-		</section>
-		<div class="form-horizontal">
-			<section class="content container-fluid">
-				<div class="box box-primary">
-					<div id="indexDiv" style="display: none;">
-						<div style="text-align: center;">
-							<div class="register-logo">
-								<h1>功能選擇</h1>
-							</div>
-							<div class="col-sm-6  col-md-6 col-lg-6" id="indexDiv_cert_a" style="background-color:white;">
-								<div style="box-shadow: 0 0 5px 3px #ececec;margin: 15px 0;border-radius: 5px;overflow: hidden;">
-									<div class="box-header with-border  bg-yellow  login-bg-yellow">
-										<h3 class="box-title flex-header" style="font-size: 22pt">登記/修改資料</h3>
-									</div>
-									<div class="box-body with-border bg">登記/修改基本資料</div>
-
-									<div class="box-body with-border" id="infoInsert">尚未登記基本資料</div>
-
-									<div class="box-footer">
-										<a href="#" title="登記資料">
-											<button class="btn btn-warning login-btn-warning" id="btnInsert">選擇</button>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6" id="indexDiv_cert_2" style="background-color:white;">
-								<div style="box-shadow: 0 0 5px 3px #ececec;margin: 15px 0;border-radius: 5px;overflow: hidden;">
-									<div class="box-header with-border  bg-green login-bg-green">
-										<h3 class="box-title flex-header" style="font-size: 22pt">繳費與查詢紀錄</h3>
-									</div>
-									<div class="box-body with-border bg">繳費</div>
-									<div class="box-body with-border">歷史紀錄查詢</div>
-									<div class="box-footer">
-										<a href="#" id="btnSelect" title="繳費與查詢紀錄">
-											<button class="btn btn-success login-btn-success">選擇</button>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="insertDiv" style="">
-
-
-<style>
-	.infoLable{
-		text-align: right;
-	}
-	.infoData{
-		text-align : left;
-	}
-	.hoverInfoDiv:hover {
-		background: yellow;
-	}
-</style>
-<div class="box-body">
-	<div class="form-group">
-		<label for="applyModal_msk001_idn" class="col-md-3 col-sm-4 control-label">
-			<span class="req">*&nbsp;</span>身分證統一編號
-		</label>
-		<div class="col-md-8 col-sm-8">
-			<input type="text" class="form-control" name="checkValue" id="applyModal_msk001_idn" maxlength="10" readonly="readonly">
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="applyModal_msk001_nm" class="col-md-3 col-sm-4 control-label"> <span class="req">*&nbsp;</span>姓名
-		</label>
-		<div class="col-md-8 col-sm-8">
-			<input type="text" class="form-control" name="checkValue" id="applyModal_msk001_nm" maxlength="60">
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="applyModal_msk001_birth" class="col-md-3 col-sm-4 control-label"> <span class="req">*&nbsp;</span>出生年份
-		</label>
-		<div class="col-md-8 col-sm-8">
-			<select class="form-control" id="applyModal_msk001_birth"><option value="">出生年份</option><option value="110">民國110年</option><option value="109">民國109年</option><option value="108">民國108年</option><option value="107">民國107年</option><option value="106">民國106年</option><option value="105">民國105年</option><option value="104">民國104年</option><option value="103">民國103年</option><option value="102">民國102年</option><option value="101">民國101年</option><option value="100">民國100年</option><option value="99">民國99年</option><option value="98">民國98年</option><option value="97">民國97年</option><option value="96">民國96年</option><option value="95">民國95年</option><option value="94">民國94年</option><option value="93">民國93年</option><option value="92">民國92年</option><option value="91">民國91年</option><option value="90">民國90年</option><option value="89">民國89年</option><option value="88">民國88年</option><option value="87">民國87年</option><option value="86">民國86年</option><option value="85">民國85年</option><option value="84">民國84年</option><option value="83">民國83年</option><option value="82">民國82年</option><option value="81">民國81年</option><option value="80">民國80年</option><option value="79">民國79年</option><option value="78">民國78年</option><option value="77">民國77年</option><option value="76">民國76年</option><option value="75">民國75年</option><option value="74">民國74年</option><option value="73">民國73年</option><option value="72">民國72年</option><option value="71">民國71年</option><option value="70">民國70年</option><option value="69">民國69年</option><option value="68">民國68年</option><option value="67">民國67年</option><option value="66">民國66年</option><option value="65">民國65年</option><option value="64">民國64年</option><option value="63">民國63年</option><option value="62">民國62年</option><option value="61">民國61年</option><option value="60">民國60年</option><option value="59">民國59年</option><option value="58">民國58年</option><option value="57">民國57年</option><option value="56">民國56年</option><option value="55">民國55年</option><option value="54">民國54年</option><option value="53">民國53年</option><option value="52">民國52年</option><option value="51">民國51年</option><option value="50">民國50年</option><option value="49">民國49年</option><option value="48">民國48年</option><option value="47">民國47年</option><option value="46">民國46年</option><option value="45">民國45年</option><option value="44">民國44年</option><option value="43">民國43年</option><option value="42">民國42年</option><option value="41">民國41年</option><option value="40">民國40年</option><option value="39">民國39年</option><option value="38">民國38年</option><option value="37">民國37年</option><option value="36">民國36年</option><option value="35">民國35年</option><option value="34">民國34年</option><option value="33">民國33年</option><option value="32">民國32年</option><option value="31">民國31年</option><option value="30">民國30年</option><option value="29">民國29年</option><option value="28">民國28年</option><option value="27">民國27年</option><option value="26">民國26年</option><option value="25">民國25年</option><option value="24">民國24年</option><option value="23">民國23年</option><option value="22">民國22年</option><option value="21">民國21年</option><option value="20">民國20年</option><option value="19">民國19年</option><option value="18">民國18年</option><option value="17">民國17年</option><option value="16">民國16年</option><option value="15">民國15年</option><option value="14">民國14年</option><option value="13">民國13年</option><option value="12">民國12年</option><option value="11">民國11年</option><option value="10">民國10年</option><option value="9">民國9年</option><option value="8">民國8年</option><option value="7">民國7年</option><option value="6">民國6年</option><option value="5">民國5年</option><option value="4">民國4年</option><option value="3">民國3年</option><option value="2">民國2年</option><option value="1">民國1年</option></select>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="applyModal_msk001_mobileNumber" class="col-md-3 col-sm-4 control-label"> <span class="req">*&nbsp;</span>手機號碼
-		</label>
-		<div class="col-md-8 col-sm-8">
-			<input type="text" class="form-control" name="checkValue" id="applyModal_msk001_mobileNumber" maxlength="10">
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="applyModal_msk001_email" class="col-md-3 col-sm-4 control-label"> <span class="req">*&nbsp;</span>Email
-		</label>
-		<div class="col-md-8 col-sm-8">
-			<input type="text" class="form-control" name="checkValue" id="applyModal_msk001_email" maxlength="50">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-3 col-sm-4 control-label"><span class="req">*&nbsp;</span>選擇送貨門市</label>
-		<div class="col-md-4 col-sm-4" style="padding-bottom: 10px;">
-			<select class="form-control" id="applyModal_msk001_marketCd"><option value="">超商</option><option value="SE">統一超商</option><option value="FM">全家便利商店</option><option value="HL">萊爾富</option><option value="OK">OK超商</option></select>
-		</div>
-		<div class="col-md-4 col-sm-4">
-			<select class="form-control" id="applyModal_msk001_hsnCd"><option value="">縣/市</option><option value="A">臺北市</option><option value="B">臺中市</option><option value="C">基隆市</option><option value="D">臺南市</option><option value="E">高雄市</option><option value="F">新北市</option><option value="G">宜蘭縣</option><option value="H">桃園市</option><option value="I">嘉義市</option><option value="J">新竹縣</option><option value="K">苗栗縣</option><option value="M">南投縣</option><option value="N">彰化縣</option><option value="O">新竹市</option><option value="P">雲林縣</option><option value="Q">嘉義縣</option><option value="T">屏東縣</option><option value="U">花蓮縣</option><option value="V">臺東縣</option><option value="W">金門縣</option><option value="X">澎湖縣</option><option value="Z">連江縣</option></select>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-3 col-sm-4 control-label"></label>
-		<div class="col-md-4 col-sm-4" style="padding-bottom: 10px;">
-			<select class="form-control" id="applyModal_msk001_townCd"><option value="">請先選擇 超商與縣/市</option></select>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-3 col-sm-4 control-label" style="height: 0px;"></label>
-		<div class="col-md-8 col-sm-8" style="padding-bottom: 10px;">
-			<select class="form-control" id="applyModal_msk001_storeCd"><option value="">請先選擇 鄉/鎮/市/區</option></select>
-		</div>
-	</div>
-</div>
-<div class="row flow-btn">
-	<div class="col-md-12" style="text-align: center;">
-		<button type="button" id="msk001Send" class="btn btn-success margin">確認送出</button>
-	</div>
-</div>
-
-
-					</div>
-					<div id="selectDiv" style="display: none;">
-
-<div class="box-header with-border">
-	<div class="">
-		<h2 class="box-title" style="margin: 6px">
-			<strong>資料查詢</strong>
-		</h2>
-	</div>
-</div>
-<div class="box-body">
-	<div class="box-header with-border">
-		<h2 class="box-title" style="margin: 6px">
-			<strong>登記資料</strong>
-		</h2>
-	</div>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>期數</th>
-				<th>分配號碼</th>
-				<th>收貨門市</th>
-				<th>是否繳費</th>
-			</tr>
-		</thead>
-		<tbody id="userList">
-<!-- 			<tr> -->
-<!-- 				<td>0100000001</td> -->
-<!-- 				<td>01, 02, 03, 04, 05, 06</td> -->
-<!-- 				<td>港都門市(台北市內湖路一段523號)</td> -->
-<!-- 				<td>Y</td> -->
-<!-- 				<td>N</td> -->
-<!-- 			</tr> -->
-		</tbody>
-	</table>
-</div>
-<div class="row flow-btn">
-	<div class="col-md-12">
-		<button type="button" id="msk001Exit" class="btn margin btn-default" onclick="msk.applyModal.goLogin();">離開</button>
-	</div>
-</div>
-
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
-
-	<div class="container" style="text-align: left;">
-		<div class="col-md-8 col-sm-8 col-xs-8 no-gutter">口罩實名制政策問題：請撥口罩專線 1919 或 0800-030-598</div>
-		<div class="col-md-8 col-sm-8 col-xs-8 no-gutter">手機認證相關問題　：請撥 0800-030-598 或 02-4128-678</div>
-		<div class="col-md-8 col-sm-8 col-xs-8 no-gutter">口罩預購系統操作　：請使用<a style="cursor:pointer;" onclick="window.open(&#39;https://webchat.tradevan.com.tw/switch_tdvdata.php?eservice=MS&#39;, &#39;線上客服&#39;, config=&#39;height=800,width=450,scrollbars=yes&#39;)">線上客服</a> (服務時間 9:00 至 21:00)</div>
-		<div class="col-md-12 col-sm-12 col-xs-12 no-gutter">
-			<a style="cursor:pointer; display: inline-block;" onclick="window.open(&#39;info1.html&#39;, &#39;服務條款&#39;, config=&#39;height=800,width=450,scrollbars=yes&#39;)">服務條款&nbsp;&nbsp;</a>|
-			<a style="cursor:pointer; display: inline-block;" onclick="window.open(&#39;info2.html&#39;, &#39;使用說明&#39;, config=&#39;height=800,width=450,scrollbars=yes&#39;)">&nbsp;&nbsp;使用說明&nbsp;&nbsp;</a>|
-			<a style="cursor:pointer; display: inline-block;" onclick="window.open(&#39;info4.html&#39;, &#39;資訊安全政策&#39;, config=&#39;height=800,width=450,scrollbars=yes&#39;)">&nbsp;&nbsp;資訊安全政策&nbsp;&nbsp;</a>|
-			<a style="cursor:pointer; display: inline-block;" onclick="window.open(&#39;info5.html&#39;, &#39;隱私權公告&#39;, config=&#39;height=800,width=450,scrollbars=yes&#39;)">&nbsp;&nbsp;隱私權公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
-		</div>
-
-<script>
-    $(document).ready(function () {
-      msk.applyModal.init();
-		    $('#applyModal_msk001_idn').val(window.args[3]);
-            if (window.args[4]) {
-		    $('#applyModal_msk001_birth').val(Number.parseInt(window.args[4], 10))
-            }
-        $("#btnInsert").click();
-    });
-</script>
-
-
-</body></html>
+<body class="pace-done pace-done">
+<h2 class='text-center' style='padding-bottom: 6px;'>eMask 口罩預購系統</h2>
+<ul style='padding-right:10px;'>
+<li style='padding-bottom: 6px; font-size: 16px'>
+感謝您使用口罩實名制 2.0 預購服務。提醒您！本服務不會以簡訊或其他方式通知您繳費。
+</li>
+<li style='padding-bottom: 6px; font-size: 16px'>
+本期試營運預購之口罩（3/26 - 4/1 當週額度）的付款期間為 3/19 早上 8:00 起至 3/21 晚上 8:00 止。
+</li>
+<li style='padding-bottom: 6px; font-size: 16px'>
+預購成功的朋友，可以至 eMask 口罩預購系統 <a href="https://emask.taiwan.gov.tw">https://emask.taiwan.gov.tw</a> 查詢您的專屬匯款帳號。若未在繳費期間內繳費將無法領取，請您諒解。
+</li>
+<li style='padding-bottom: 6px; font-size: 16px'>
+繳費完成後，3/22 起將會收到簡訊取貨通知及序號。您也可以到 <a href="https://emask.taiwan.gov.tw">https://emask.taiwan.gov.tw</a> 口罩預購系統，查詢繳費及取貨資訊。
+</li>
+</ul>
+</body>
+</html>
