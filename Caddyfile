@@ -12,7 +12,7 @@
             rotate_age 14
             rotate_keep 2048576
         }
-        errors {
-            405 ok.json
-        }
+#        errors {
+#            405 ok.json
+#        }
 }
