@@ -1,12 +1,12 @@
 127.0.0.1:8888 {
         tls off
-#        log /uploadService.do uploadService.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || BODY: {request_body}" {
+#        log /uploadService.do ../uploadService.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || BODY: {request_body}" {
 #            rotate_compress
 #            rotate_size 100
 #            rotate_age 14
 #            rotate_keep 2048576
 #        }
-        log / access.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || REQUEST: {request}" {
+        log / ../access.log "{remote} {when} {method} {uri} {proto} {status} {size} {latency} || REQUEST: {request}" {
             rotate_compress
             rotate_size 100
             rotate_age 14
